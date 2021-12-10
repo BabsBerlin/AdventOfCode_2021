@@ -1,23 +1,22 @@
 
-### <font color="green">**Advent of Code 2021**</font> 🎄
+###**Advent of Code 2021** 🎄
 
 for those who do not know what this is:
 [Advent of Code](https://adventofcode.com/2021/about)
 
 
 let's see how far I'll get this year ...<br>
-<font size=0.8em>(I also award myself a little 🔔 when I solved the puzzles on the respective day)</font>
 
-- day01 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
-- day02 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
-- day03 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
-- day04 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
-- day05 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
-- day06 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
-- day07 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
-- day08 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
-- day09 ⭐️  <span style='font-size:0.6em'>🔔</span>
-- day10 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
+- day01 ⭐️⭐️
+- day02 ⭐️⭐️
+- day03 ⭐️⭐️
+- day04 ⭐️⭐️
+- day05 ⭐️⭐️
+- day06 ⭐️⭐️
+- day07 ⭐️⭐️
+- day08 ⭐️⭐️
+- day09 ⭐️  
+- day10 ⭐️⭐️
 - day11
 - day12
 - day13
@@ -33,4 +32,3 @@ let's see how far I'll get this year ...<br>
 - day23
 - day24
 - day25
-</span>
