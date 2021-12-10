@@ -1,11 +1,5 @@
-<style type="text/css">
-  body{
-      font-family: courier;
-      color: grey
-      }
-</style>
 
-### <span style='color:green'>**Advent of Code 2021**</span> 🎄
+### <font color="green">**Advent of Code 2021**</font> 🎄
 
 for those who do not know what this is:
 [Advent of Code](https://adventofcode.com/2021/about)
@@ -39,3 +33,4 @@ let's see how far I'll get this year ...<br>
 - day23
 - day24
 - day25
+</span>
