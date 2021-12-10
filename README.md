@@ -6,7 +6,7 @@ for those who do not know what this is:
 
 
 let's see how far I'll get this year ...<br>
-<span style='font-size:0.8em'>(I also award myself a little 🔔 when I solved the puzzles on the respective day)</span>
+<font size=0.8em>(I also award myself a little 🔔 when I solved the puzzles on the respective day)</font>
 
 - day01 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
 - day02 ⭐️⭐️ <span style='font-size:0.6em'>🔔</span>
