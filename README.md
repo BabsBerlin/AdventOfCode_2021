@@ -15,10 +15,10 @@ let's see how far I'll get this year ...<br>
 - day06 ⭐️⭐️
 - day07 ⭐️⭐️
 - day08 ⭐️⭐️
-- day09 ⭐️  
+- day09 ⭐️⭐️  
 - day10 ⭐️⭐️
 - day11 ⭐️⭐️
-- day12
+- day12 ⭐️⭐️
 - day13
 - day14
 - day15
