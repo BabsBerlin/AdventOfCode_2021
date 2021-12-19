@@ -76,8 +76,7 @@ def read_packet(packets, transmission):
 
     # ID: 4 -> package represents a literal value
     if packet_id == 4:
-        number, transmission = literal_packet(transmission)
-        print(f'number from literal package: {number}')
+        _, transmission = literal_packet(transmission)
 
     # elif ID != 4
     else:
