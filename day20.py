@@ -4,7 +4,7 @@ from itertools import product
 
 # get data input
 #raw_file = 'day20_test.txt'
-raw_file = 'day20_f.txt'
+raw_file = 'day20_p.txt'
 #raw_file = 'day20.txt'
 
 with open(raw_file) as file:
@@ -17,7 +17,7 @@ data = np.asarray(data)
 
 # get decoder string
 #raw_decoder = 'day20_decoder_test.txt'
-raw_decoder = 'day20_decoder_f.txt'
+raw_decoder = 'day20_decoder_p.txt'
 #raw_decoder = 'day20_decoder.txt'
 
 with open(raw_decoder) as file:
@@ -27,6 +27,8 @@ decoder_first = decoder[0][0]
 decoder_last = decoder[0][-1]
 print(f'first decoder: {decoder_first}')
 print(f'last decoder: {decoder_last}')
+print(f'length: {len(decoder[0])}')
+print(f'last number: {decoder[0][len(decoder[0])-1]}')
 
 
 # function to pad '.' around the image
@@ -63,13 +65,17 @@ def binary_to_decimal(binary_value):
 
 
 # convert 3x3 to number
-def convert_neighbors(map, neighbors):
+def convert_neighbors(map, neighbors, round):
+    if round%2 == 0 or decoder_first == '.':
+        return_value = 0
+    else:
+        return_value = len(decoder[0])-1
     binary = ''
     for n in neighbors:
         x = n[0]
         y = n[1]
         if x not in range(map.shape[0]) or y not in range(map.shape[1]):
-            return None
+            return return_value  # None
         else:
             if map[x][y] == '#':
                 binary = binary + '1'
@@ -82,8 +88,6 @@ def convert_neighbors(map, neighbors):
 # STEP 1: pad the data with 2 rows/cols
 trench_map_1= np.pad(data, 2, pad_with_point)
 
-#trench_map_1 = np.pad(data, 2, pad_with1)
-
 # copy data to new map in which pixel are changed   
 trench_map_1_converted = trench_map_1.copy()
 
@@ -93,18 +97,18 @@ for index, values in np.ndenumerate(trench_map_1):
     # find neighbors
     neighbors = find_neighbors(index)
     # convert to number
-    n_number = convert_neighbors(trench_map_1, neighbors)
+    n_number = convert_neighbors(trench_map_1, neighbors, 1)
     # map that number with encoder and change respective pixel in the new map
-    if n_number:  # i.e. ignores edges
-        trench_map_1_converted[index[0]][index[1]] = decoder[0][n_number]
+    #if n_number:  # i.e. ignores edges
+    trench_map_1_converted[index[0]][index[1]] = decoder[0][n_number]
 
 # STEP 3: switch outer border to decoders first symbol since all '.' will be converted to that   
-trench_map_1_converted[0] = decoder_first
-trench_map_1_converted[-1] = decoder_first
-trench_map_1_converted[:,0] = decoder_first
-trench_map_1_converted[:,-1] = decoder_first
+#trench_map_1_converted[0] = decoder_first
+#trench_map_1_converted[-1] = decoder_first
+#trench_map_1_converted[:,0] = decoder_first
+#trench_map_1_converted[:,-1] = decoder_first
 
-# STEP 4: pad a second time with 2 rows/cols and '#'
+# STEP 4: pad a second time with 2 rows/cols using first decoder symbol
 if decoder_first == '#':
     trench_map_2_pad= np.pad(trench_map_1_converted, 2, pad_with_hash)
 else:
@@ -112,24 +116,25 @@ else:
     
 
 # copy data to new map in which pixel are changed   
-trench_map_final = trench_map_2_pad.copy()
+trench_map_final = trench_map_1_converted.copy()
 
 # STEP 5: convert each pixel according to encoder
 # the outer edge is not converted 
-for index, values in np.ndenumerate(trench_map_2_pad):
+for index, values in np.ndenumerate(trench_map_1_converted):
     # find neighbors
     neighbors = find_neighbors(index)
     # convert to number
-    n_number = convert_neighbors(trench_map_2_pad, neighbors)
+    n_number = convert_neighbors(trench_map_1_converted, neighbors, 2)
     # on the edges
-    if n_number:
-        trench_map_final[index[0]][index[1]] = decoder[0][n_number]
+    #if n_number:
+    trench_map_final[index[0]][index[1]] = decoder[0][n_number]
 
 # STEP 6: switch outer row/col back to '.'
-trench_map_final[0] = '.'
-trench_map_final[-1] = '.'
-trench_map_final[:,0] = '.'
-trench_map_final[:,-1] = '.'
+""" if trench_map_final[0][0] == '#': 
+    trench_map_final[0] = decoder_last
+    trench_map_final[-1] = decoder_last
+    trench_map_final[:,0] = decoder_last
+    trench_map_final[:,-1] = decoder_last """
 
 
 #print('final map')
