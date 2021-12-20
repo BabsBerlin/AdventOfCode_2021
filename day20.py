@@ -116,25 +116,25 @@ else:
     
 
 # copy data to new map in which pixel are changed   
-trench_map_final = trench_map_1_converted.copy()
+trench_map_final = trench_map_2_pad.copy()
 
 # STEP 5: convert each pixel according to encoder
 # the outer edge is not converted 
-for index, values in np.ndenumerate(trench_map_1_converted):
+for index, values in np.ndenumerate(trench_map_2_pad):
     # find neighbors
     neighbors = find_neighbors(index)
     # convert to number
-    n_number = convert_neighbors(trench_map_1_converted, neighbors, 2)
+    n_number = convert_neighbors(trench_map_2_pad, neighbors, 2)
     # on the edges
     #if n_number:
     trench_map_final[index[0]][index[1]] = decoder[0][n_number]
 
 # STEP 6: switch outer row/col back to '.'
-""" if trench_map_final[0][0] == '#': 
+if trench_map_final[0][0] == '#': 
     trench_map_final[0] = decoder_last
     trench_map_final[-1] = decoder_last
     trench_map_final[:,0] = decoder_last
-    trench_map_final[:,-1] = decoder_last """
+    trench_map_final[:,-1] = decoder_last
 
 
 #print('final map')
