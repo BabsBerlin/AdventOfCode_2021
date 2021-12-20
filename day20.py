@@ -4,8 +4,8 @@ from itertools import product
 
 # get data input
 #raw_file = 'day20_test.txt'
-#raw_file = 'day20_f.txt'
-raw_file = 'day20.txt'
+raw_file = 'day20_f.txt'
+#raw_file = 'day20.txt'
 
 with open(raw_file) as file:
     input = file.readlines()
@@ -17,16 +17,20 @@ data = np.asarray(data)
 
 # get decoder string
 #raw_decoder = 'day20_decoder_test.txt'
-#raw_decoder = 'day20_decoder_f.txt'
-raw_decoder = 'day20_decoder.txt'
+raw_decoder = 'day20_decoder_f.txt'
+#raw_decoder = 'day20_decoder.txt'
 
 with open(raw_decoder) as file:
     decoder = file.readlines()
 # **************************************
+decoder_first = decoder[0][0]
+decoder_last = decoder[0][-1]
+print(f'first decoder: {decoder_first}')
+print(f'last decoder: {decoder_last}')
 
 
 # function to pad '.' around the image
-def pad_with1(vector, pad_width, iaxis, kwargs):
+def pad_with_point(vector, pad_width, iaxis, kwargs):
     pad_value = kwargs.get('padder', '.')
     vector[:pad_width[0]] = pad_value
     vector[-pad_width[1]:] = pad_value
@@ -35,7 +39,7 @@ def pad_with1(vector, pad_width, iaxis, kwargs):
 
 
 # function to pad '#' around the image
-def pad_with2(vector, pad_width, iaxis, kwargs):
+def pad_with_hash(vector, pad_width, iaxis, kwargs):
     pad_value = kwargs.get('padder', '#')
     vector[:pad_width[0]] = pad_value
     vector[-pad_width[1]:] = pad_value
@@ -75,8 +79,10 @@ def convert_neighbors(map, neighbors):
 # **************************************
 
 
-# STEP 1: pad the data with 2 rows/cols using '.'
-trench_map_1 = np.pad(data, 2, pad_with1)
+# STEP 1: pad the data with 2 rows/cols
+trench_map_1= np.pad(data, 2, pad_with_point)
+
+#trench_map_1 = np.pad(data, 2, pad_with1)
 
 # copy data to new map in which pixel are changed   
 trench_map_1_converted = trench_map_1.copy()
@@ -92,14 +98,18 @@ for index, values in np.ndenumerate(trench_map_1):
     if n_number:  # i.e. ignores edges
         trench_map_1_converted[index[0]][index[1]] = decoder[0][n_number]
 
-# STEP 3: switch outer border to '#' since all zeros will be converted to that   
-trench_map_1_converted[0] = '#'
-trench_map_1_converted[-1] = '#'
-trench_map_1_converted[:,0] = '#'
-trench_map_1_converted[:,-1] = '#'
+# STEP 3: switch outer border to decoders first symbol since all '.' will be converted to that   
+trench_map_1_converted[0] = decoder_first
+trench_map_1_converted[-1] = decoder_first
+trench_map_1_converted[:,0] = decoder_first
+trench_map_1_converted[:,-1] = decoder_first
 
 # STEP 4: pad a second time with 2 rows/cols and '#'
-trench_map_2_pad= np.pad(trench_map_1_converted, 2, pad_with2)
+if decoder_first == '#':
+    trench_map_2_pad= np.pad(trench_map_1_converted, 2, pad_with_hash)
+else:
+    trench_map_2_pad= np.pad(trench_map_1_converted, 2, pad_with_point)
+    
 
 # copy data to new map in which pixel are changed   
 trench_map_final = trench_map_2_pad.copy()
