@@ -28,7 +28,7 @@ let's see how far I'll get this year ...<br>
 - day19
 - day20 ⭐️⭐️
 - day21 ⭐️⭐️
-- day22 ⭐️
+- day22 ⭐️⭐️
 - day23 ⭐️⭐️
 - day24 ⭐️⭐️
 - day25 ⭐️
